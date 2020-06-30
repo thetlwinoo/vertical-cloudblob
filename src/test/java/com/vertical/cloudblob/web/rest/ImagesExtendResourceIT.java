@@ -2,6 +2,7 @@ package com.vertical.cloudblob.web.rest;
 
 import com.vertical.cloudblob.CloudblobApp;
 import com.vertical.cloudblob.config.TestSecurityConfiguration;
+import com.vertical.cloudblob.service.ImagesExtendService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -20,12 +21,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ImagesExtendResourceIT {
 
     private MockMvc restMockMvc;
+    private final ImagesExtendService imagesExtendService;
+
+    public ImagesExtendResourceIT(ImagesExtendService imagesExtendService) {
+        this.imagesExtendService = imagesExtendService;
+    }
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        ImagesExtendResource imagesExtendResource = new ImagesExtendResource();
+        ImagesExtendResource imagesExtendResource = new ImagesExtendResource(imagesExtendService);
         restMockMvc = MockMvcBuilders
             .standaloneSetup(imagesExtendResource)
             .build();

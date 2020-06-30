@@ -1,0 +1,15 @@
+entity Images{
+    thumbnail ImageBlob required
+    original ImageBlob required
+    bannerTall ImageBlob
+    bannerWide ImageBlob
+    circle ImageBlob
+    sharpened ImageBlob
+    square ImageBlob
+    watermark ImageBlob
+    refId Long
+}
+
+dto * with mapstruct
+service all with serviceImpl
+filter *
